@@ -1,0 +1,25 @@
+.consultaIptu{
+	box-shadow: 0px 0px 2px 2px white; 
+	margin-top: 13%;
+	border-radius: 15px;
+}
+
+.tableLine{
+	text-align: center;
+}
+
+tr{
+	text-align: right;
+}
+
+img{
+	float: right;
+}
+
+tr:hover{
+	background-color: darkslategray;
+	color: white;	
+}
+button:hover{
+	background-color: darkslategray;
+}
