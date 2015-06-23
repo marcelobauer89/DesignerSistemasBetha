@@ -1,0 +1,87 @@
+<html ng-app="funcionario">
+		<head>
+			<title>Acesso do Funcionário</title>
+				<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+				<link rel="stylesheet" href="../bootstrap/css/styleFuncionarios.css">
+				
+				<script src="../angular/angular.js"></script>		
+				<script src="../modules/app.js"></script>
+				<script src="../controllers/controllerFuncionario.js"></script>
+		
+				<meta charset="UTF-8">
+		
+		</head>	
+		
+	<body ng-controller="funcionarioCtrl" ng-cloak>
+		
+	   <div class="navbar navbar-inverse navbar-fixed-top navBar">    
+      	 <div class="container">  
+         	<div class="navbar-header">
+            	<button type="button" class="navbar-toggle iconeResponsivo" data-toggle="collapse" data-target=".navbar-collapse">
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	            </button>
+                <a class="navbar-brand" href="#">
+					<img src="../images/secretariaFazenda.png" class="imgLogo">
+				</a>
+            </div>
+            <div class="navbar-collapse collapse icon">
+                <ul class="nav navbar-nav navbar-right">
+                    <p class="navbar-text navbar-right">Seja bem vindo,<font color="fff"> {{funcionario[0].nome}} <a ng-click="logout()"> SAIR</a></p>
+                </ul>
+            </div>
+        </div>
+    </div>
+		<br><br><br><br>
+<div class="container">			
+	<div class="row">		
+		<div class="col col-md-5">	
+			<div class="panel panel-default">
+			  <div class="panel-heading"><h3>Impostos obtidos em tempo real<h3></div>
+			  <div class="panel-body">
+			    <img src="../images/imposto.png"><h1>R${{impostos}}.000,00</h1>
+			  </div>
+			</div>	
+	</div>
+		<div class="col col-md-7">
+			<div class="panel panel-default">
+			  <div class="panel-heading"><h3>Registro de acesso dos cidadãos<h3></div>
+			  <div class="panel-body">
+													<div class="col-lg-6"> 
+														<div class="input-group">
+														  <input ng-model="criterioDeBusca" type="text" class="form-control" placeholder="informe o nome do cidadão" aria-describedby="basic-addon2">
+														  <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-search"></span></span>
+														</div>
+					
+												  </div><!-- /.col-lg-6 -->
+			  </div><br>			
+				<table class="table table-hover">
+ 					<thead>
+						 <td><label>Nome</label></td>
+						 <td><label>Atividade</label></td>
+						 <td><label>Data</label></td>
+						 <td><label>Horário</label></td>
+					 </thead>
+					 
+					 <tbody>
+						<tr ng-repeat="tarefa in tarefas | filter: { nome: criterioDeBusca}">		 
+							<td>{{tarefa.nome}}</td>
+							<td>{{tarefa.atividade}}</td>
+							<td>{{tarefa.data}}</td>	 
+							<td>{{tarefa.horario}}</td>
+						</tr>
+					 </tbody>
+					 
+				</table>
+			  </div>
+			</div>	
+							
+		</div>
+
+</div>
+					<!-- Links para carregar arquivos javascript do Bootstrap -->
+		<script src="../bootstrap/js/jquery.min.js"></script>
+		<script src="../bootstrap/js/bootstrap.min.js"></script>
+	</body>	
+</html> 

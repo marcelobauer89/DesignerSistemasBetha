@@ -1,0 +1,116 @@
+.navBar{
+	height: 51px;
+	background-color:white;
+	border-color: white;
+}
+
+.imgLogo{
+	margin-top:-15;
+	width: 55px;
+}
+
+li:hover{
+	background-color: lightslategray;
+	border-radius: 3px;
+	
+}
+
+
+/*menu quando fica responsivo*/
+.icon{
+	background-color: white;
+}
+
+/*icone quando fica responsivo*/
+.iconeResponsivo{
+	background-color: black;
+}
+
+body{
+/*	background-color: lightslategray;*/
+	background-color: darkcyan;
+}
+
+/*bloco de impostos*/
+.impostos{
+	width: 100%;
+	height: 80%;
+	border-radius: 5px;
+	text-align: center;
+	background-color:white;
+	color: darkslateblue;
+
+}
+
+
+
+figure { 
+	position: relative; 
+	width: 330px;
+	height: 170px;
+	margin-left: 50px;
+	
+} 
+
+figcaption {
+	margin-left: 90%;
+	margin-top: 30%;
+	position: absolute;  
+	text-align: center;
+	color: darkslateblue;
+	line-height: 3em;
+	font-size: 80;
+}
+
+.imgImposto{
+	width: 250px;
+	float: left;
+}
+
+/*barra de acesso de usuários*/
+.userAcess{
+	background-color: white;
+	height: 600px;
+	border-radius: 5px;
+	 
+}
+
+li:hover{
+	background-color: darkslategray;
+	color:white;
+}
+
+
+.welcome{
+	
+	border-radius: 15px;
+	text-align: center;
+	box-shadow: 0px 0px 0px 2px white;
+	background-color: white;
+}
+
+
+
+
+/*-----------------------------------------------*/
+
+.panel-heading{
+	text-align: center;		
+}
+
+.panel{
+	text-align: center;
+	padding: 10px;
+	box-shadow: 0px 0px 1px 1px black; 
+}
+
+
+img{
+	width: 80px;
+}
+
+
+.col-lg-6{
+	float: right;
+}
+

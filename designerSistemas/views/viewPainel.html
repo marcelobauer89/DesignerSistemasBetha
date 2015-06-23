@@ -1,0 +1,195 @@
+<html ng-app="cidadao">
+	<head>
+		<title>Acesso do Cidadão</title>
+		
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../bootstrap/css/style.css">
+		<link rel="stylesheet" href="../bootstrap/css/styleEmitirIptu.css">
+		<link rel="stylesheet" href="../bootstrap/css/styleCidadao.css">
+		<link rel="stylesheet" href="../bootstrap/css/styleConsultarIptu.css">
+	
+		<script src="../angular/angular.js"></script>		
+		<script src="../modules/app.js"></script>
+		<script src="../controllers/controllerPanel.js"></script>
+
+		<meta charset="UTF-8">
+
+	</head> 
+	
+	<body ng-controller="cidadaoCtrl" ng-cloak>
+		<div class="navbar navbar-inverse navbar-fixed-top navBar">    
+      	 <div class="container">  
+         	<div class="navbar-header">
+            	<button type="button" class="navbar-toggle iconeResponsivo" data-toggle="collapse" data-target=".navbar-collapse">
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	            </button>
+                <a class="navbar-brand" href="#">
+					<img src="../images/betha.png" class="imgLogo">
+				</a>
+            </div>
+            <div class="navbar-collapse collapse icon">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a data-toggle="modal" data-target="#myModal"><font color="black" size="4">Emitir IPTU</font></a></li>
+					<li><a data-toggle="modal" data-target=".bs-example-modal-lg"><font color="black" size="4">
+  						Consultar IPTU
+					</font></a></li>
+					<p class="navbar-text navbar-right">{{iptus[0].nome}} <a ng-click="logout()"> SAIR </a></p>
+                </ul>
+            </div>
+           
+        </div>
+    </div>
+	
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header cor">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							    <header>
+								  <h4 class="modal-title" id="myModalLabel"><h2>Informe os dados para emitir o seu IPTU</h4>
+								
+								</header>	
+						      </div>
+						      <div class="modal-body">
+						       
+						<div class="row">
+							  <div class="col-sm-6 col-md-12">
+				
+							    <div class="thumbnail ">
+							      <div class="caption">
+									  
+									  	<div class="alert alert-success" ng-show="success">
+       	 								<center>IPTU emitido com Sucesso!!<br>
+												Agora você pode consulta-lo para saber mais detalhes sobre o pagamento.
+										</center>
+     								</div>
+							      
+										<form role="form" name="myForm">
+											
+											<h5>Código</h5></h5><input class="form-control" ng-model="dados.id" type="number" step="0,00" min="1,00">
+											
+											<h5>CPF</h5></h5><input class="form-control" type="text" ng-model="dados.cpf">
+																							
+											<h5>Área do imóvel (m²)</h5></h5><input class="form-control" type="number" step="0,00" min="1,00" ng-model="dados.area">
+											
+											<h5>Tipo de imóvel</h5><p>
+												<select class="form-control" placeholder="Selecione" ng-model="dados.tipo">
+													<option disabled selected value="">Selecione uma categoria</option>
+													<option >Casa</option>
+													<option >Apartamento</option>
+													<option >Terreno</option>
+													<option >Sala Comercial</option>
+												</select>
+									
+											<h5>Valor do imóvel</h5>
+									         <div class="input-group">                
+								             	<span class="input-group-addon">$</span>    
+								                <input class="form-control"  type="number" step="1,00" min="0,00" max="300000"  ng-model="dados.valorImovel"> <br>
+								             </div>
+											
+											<h5>Endereço</h5><input class="form-control" type="text" ng-model="dados.endereco">
+										
+											<br><button type="submit" class="btn btn-success btn-lg btn-block" ng-disabled=" !dados.id || !dados.cpf || !dados.area || !dados.tipo || !dados.valorImovel || !dados.endereco" ng-click="emitirIptu(dados)">Enviar</button>	
+										</form>
+
+							      </div>
+							    </div>
+							  </div>
+							</div>
+						      </div>
+						    </div>
+						  </div>
+						</div>	
+
+<!-- Modal -->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header cor">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><center><h2>Consulte seu IPTU!</h2></center></h4>
+      </div>
+      <div class="modal-body">
+        <div class="thumbnail">
+							      <div class="caption">
+											<div class="row">
+												  <div class="col-lg-5">
+												    <br>
+														<h4>Informe o código de seu IPTU</h4> 
+														
+													<div class="col-lg-7"> 
+														<div class="input-group">
+														  <input ng-model="criterioDeBusca" type="text" class="form-control" placeholder="EX: 1" aria-describedby="basic-addon2">
+														  <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-search"></span></span>
+														</div>
+					
+												  </div><!-- /.col-lg-6 -->
+					
+												  </div><!-- /.col-lg-6 -->
+													<img src="../images/iptu.png">
+											</div><!-- /.row -->
+											
+											<hr>	
+											<div class="table-responsive">
+												<table class="table">
+												 	<thead>
+														 <td class="tableLine"><label>Código</label></td>
+														 <td class="tableLine"><label>Área do Imóvel (m²)</label></td>
+														 <td class="tableLine"><label>Valor do Imóvel</label></td>
+														 <td class="tableLine"><label>Endereço</label></td>
+														 <td class="tableLine"><label>Data de Cadastro</label></td>
+														 <td class="tableLine"><label>Valor IPTU</label></td>
+													 	 <td class="tableLine"><label>Data de Pagamento</label></td>
+													 	 <td class="tableLine"><label>CPF</label></td>
+													 
+													 </thead>
+													 
+													 <tbod>
+														 <tr ng-repeat="iptu in iptus | filter: { id: criterioDeBusca}">
+															 <td>{{iptu.id}}</td>
+															 <td>{{iptu.area}}</td>
+															 <td>R${{iptu.valorImovel}}</td>
+															 <td>{{iptu.endereco}}</td>
+															 <td>{{iptu.cadastro | date: 'dd/MM/yyyy'}}</td>
+															 <td>R${{iptu.pagamento }}</td>
+															 <td>{{iptu.dataPagamento | date:'dd/MM/yyyy'}}</td>
+															 <td>{{iptu.cpf}}</td>
+														 </tr>
+														 
+													 </tbod>
+												</table>
+											</div>
+											
+								 	</div>
+							    </div>
+							  </div>
+							</div>
+      </div>
+    </div>
+	
+	<div class="col col-md-2"></div>
+		
+	<div class="col col-md-8">
+		<header>
+			<article>
+				<div class="jumbotron welcome">
+				  <h1>Bem vindo, {{iptus[0].nome}}!</h1>
+				  <p>Você poderá emitir e consultar seus carnês de IPTU, basta acessar as funcionaldades na parte superior do sistema.</p>
+		
+				</div>
+			</article>	
+		</header>
+	</div>
+	
+  </div>
+</div>
+						<!-- Links para carregar arquivos javascript do Bootstrap -->
+			<script src="../bootstrap/js/jquery.min.js"></script>
+			<script src="../bootstrap/js/bootstrap.min.js"></script>
+
+	</body>
+
+</html>

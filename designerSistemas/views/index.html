@@ -1,0 +1,83 @@
+<html ng-app="login">
+<head>
+	<title>LOGIN DO SISTEMA</title>
+
+	<!-- Links para carregar arquivos css do Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/style.css">
+	
+	<script src="../angular/angular.js"></script>		
+	<script src="../modules/app.js"></script>
+	<script src="../controllers/controllerLogin.js"></script>
+
+	<meta charset="UTF-8">
+		
+		
+</head>
+<body ng-controller="loginCtrl" ng-cloak>
+
+	<div class="faixa">
+			<div class="col-md-4">	
+			</div>
+				<div class="col-md-4">
+					<article>
+						<header>
+							<div class="row">
+								  <div class="col-sm-6 col-md-12">
+								    <div class="thumbnail logar">
+								      <div class="caption">
+								      	<img src="../images/betha.png">
+								        <h1>Portal de Acesso</h1>
+										<hr>
+											<div class="alert alert-danger" ng-if="error">
+       	 										<center>Seu CPF ou número de inscrição estão incorretos!!</center>
+     										</div>
+											<form role="form" name="myForm" ng-submit="logar(dados)">
+												<h4>CPF</h4></p><input class="form-control cpf" type="text" ng-model="dados.cpf" required>
+												<h4>Nº de inscrição</h4><p><input class="form-control numInscricao" type="password" ng-model="dados.numInscricao" required>
+												<p><button type="submit"  class="btn btn-success btn-lg btn-block">Entrar</button>	
+													<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModalTutorial">
+							 							Dados para acesso do sistema
+													</button>				 
+											</form>
+	
+								      </div>
+								    </div>
+								  </div>
+								</div>
+								
+							<div class="modal fade" id="myModalTutorial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							  <div class="modal-dialog">
+							    <div class="modal-content">
+							      <div class="modal-header cor">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="myModalLabel"><strong>Dados de Acesso</strong></h4>
+							      </div>
+							      <div class="modal-body">
+									<h4><strong>Acesso Cidadão</strong></h4><p>
+										<h5>CPF: 123456789</h5><p>
+										<h5>Nº de Inscrição: 123456</h5>
+										<hr>
+									<h4><strong>Acesso Funcionário</strong></h5><p>
+										<h5>CPF: 987654321</h5><p>
+										<h5>Nº de Inscrição: 654321</h5>
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+						</header>
+					</article>
+				</div>
+			<div class="col-md-4"></div>
+			<footer>
+					<!--  desenvolver o footer aquiii!!!!-->
+			</footer>
+		</div>
+  <!-- Links para carregar arquivos javascript do Bootstrap -->
+	<script src="../bootstrap/js/jquery.min.js"></script>
+	<script src="../bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
